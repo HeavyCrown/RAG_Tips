@@ -48,6 +48,7 @@
 	4. 结合llm生成答案
 
 ### 根据语义划分chunk（Semantic Chunking）
+[semantic_chunking](https://github.com/HeavyCrown/RAG_Tips/blob/main/semantic_chunking.py)
 1. 通过尝试保持chunk内部语义的一致性来提高检索信息的质量
 2. 对于处理长而复杂的文档（需要维护上下文）很有价值
 3. 实现：
@@ -56,6 +57,3 @@
 		1. percentile（百分位）：计算句子之间的所有差异，然后拆分任何大于X百分位的差异
 		2. standard_deviation（标准偏差）：任何大于X个标准差的差异都会被拆分
 		3. interquartile（四分位间距）
-'text_splitter = SemanticChunker(
-    OpenAIEmbeddings(), breakpoint_threshold_type="xxxx"
-)'
