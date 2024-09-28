@@ -36,7 +36,7 @@
 3. 有助于检索较复杂的文档内容
 
 ### RSE
-[RES]
+[RES](https://github.com/HeavyCrown/RAG_Tips/blob/main/RSE.py)
 1. 问题：根据问题的不同，我们需要动态的改变召回块的大小
 	1. 有些问题需要更大的上下文，需要更大的chunk
 	2. 一些简单的查询则最好由小的chunk来处理
