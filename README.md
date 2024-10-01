@@ -57,3 +57,15 @@
 		1. percentile（百分位）：计算句子之间的所有差异，然后拆分任何大于X百分位的差异
 		2. standard_deviation（标准偏差）：任何大于X个标准差的差异都会被拆分
 		3. interquartile（四分位间距）
+
+### 文档检索中的上下文压缩（Contextual Compression）
+[context_compression](https://github.com/HeavyCrown/RAG_Tips/blob/main/context_compression.py)
+1. 传统的文档检索系统通常返回整个块或文档，其中可能包含不相关的信息
+2. 上下文压缩通过提取和压缩检索到的最相关的部分来解决这一问题
+3. 技术细节：langchain框架
+	1. 将基本检索器和压缩器组合成一个ContextualCompressionRetriver
+	2. 构建RetrievalQA链，继承压缩检索器
+4. 好处：
+	1. 提高召回内容的相关性
+	2. 提高效率，减少了LLM需要处理的文本量
+	3. 减少了成本，减少了输入LLM的token数量
