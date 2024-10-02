@@ -1,7 +1,7 @@
 # 一些调优的方法：
 ## 基于文本数据和分片策略：
 ### Chunk_size的选择（文档处理）
-[choose_chunk_size](https://github.com/HeavyCrown/RAG_Tips/blob/main/choose_chunk_size.py)
+[choose_chunk_size](https://github.com/HeavyCrown/RAG_Tips/blob/main/Chunk/choose_chunk_size.py)
 1. 构造出可选的chunk_size的列表[128，256，...]
 2. 构造基于文档的questions
 		'data_generator = DatasetGenerator.from_documents(eval_documents)
@@ -16,13 +16,13 @@
 -----------------------------------------------------------
 ## Query增强：
 ### Query转换技术：可以单独使用，也可以结合使用
-[query_transformations](https://github.com/HeavyCrown/RAG_Tips/blob/main/query_transformations.py)
+[query_transformations](https://github.com/HeavyCrown/RAG_Tips/blob/main/QueryEnhancement/query_transformations.py)
 1. Rewriting：通过LLM将查询变得更加详细、具体
 2. step-back prompting：通过LLM生成更加广泛、通用的query，帮助检索相关的背景信息
 3. 子查询分解：通过大模型将复杂问题分解，以便更加全面的查询
 
 ### 生成假设性文档
-[HypotheticalDocumentsEmbedding](https://github.com/HeavyCrown/RAG_Tips/blob/main/HypotheticalDocumentEmbedding.py)
+[HypotheticalDocumentsEmbedding](https://github.com/HeavyCrown/RAG_Tips/blob/main/QueryEnhancement/HypotheticalDocumentEmbedding.py)
 1. 通过llm将query生成为一个字数为chunk_size的文档
 2. 好处：
 	1. 扩展成完整文档后，可以捕获更细微和相关的匹配
@@ -36,7 +36,7 @@
 3. 有助于检索较复杂的文档内容
 
 ### RSE
-[RES](https://github.com/HeavyCrown/RAG_Tips/blob/main/RSE.py)
+[RES](https://github.com/HeavyCrown/RAG_Tips/blob/main/ContextContentEnrichment/RSE.py)
 1. 问题：根据问题的不同，我们需要动态的改变召回块的大小
 	1. 有些问题需要更大的上下文，需要更大的chunk
 	2. 一些简单的查询则最好由小的chunk来处理
@@ -48,7 +48,7 @@
 	4. 结合llm生成答案
 
 ### 根据语义划分chunk（Semantic Chunking）
-[semantic_chunking](https://github.com/HeavyCrown/RAG_Tips/blob/main/semantic_chunking.py)
+[semantic_chunking](https://github.com/HeavyCrown/RAG_Tips/blob/main/ContextContentEnrichment/semantic_chunking.py)
 1. 通过尝试保持chunk内部语义的一致性来提高检索信息的质量
 2. 对于处理长而复杂的文档（需要维护上下文）很有价值
 3. 实现：
@@ -59,7 +59,7 @@
 		3. interquartile（四分位间距）
 
 ### 文档检索中的上下文压缩（Contextual Compression）
-[context_compression](https://github.com/HeavyCrown/RAG_Tips/blob/main/context_compression.py)
+[context_compression](https://github.com/HeavyCrown/RAG_Tips/blob/main/ContextContentEnrichment/context_compression.py)
 1. 传统的文档检索系统通常返回整个块或文档，其中可能包含不相关的信息
 2. 上下文压缩通过提取和压缩检索到的最相关的部分来解决这一问题
 3. 技术细节：langchain框架
@@ -72,7 +72,7 @@
 ------------------------------------------------------------
 ## 检索方法增强
 ### 融合检索（Fusion Retrieval）
-[FusionRetrieval]()
+[FusionRetrieval](https://github.com/HeavyCrown/RAG_Tips/blob/main/AdvancedRetrievalMethods/FushionRetrieval.py)
 1. 通过结合相似度检索和关键字检索（BM25）的方式来优化检索结果
 2. 两种检索方法各有优点和缺点，融合后可以增强检索系统的健壮性和准确性，有效地处理更加广泛的查询
 3. 过程细节：
