@@ -84,3 +84,18 @@
 	1. 提高检索质量：通过结合两种检索方式，系统可以捕获概念相似和关键字匹配两种维度的结果
 	2. 灵活性：alpha参数可以灵活调整
 	3. 健壮性：组合方法可以有效处理更大范围的查询，减轻单个方法的弱点
+
+### 重排
+1. 基于LLM的重排方法 [llm_Reranking](https://github.com/HeavyCrown/RAG_Tips/blob/main/AdvancedRetrievalMethods/llm_Reranking.py)
+	1. 通过大模型API为召回的chunk进行赋分（相关性）
+	2. 根据分数降序排序，返回top-k
+2. 基于CrossEncoder的方法 [Cross_Encoder_Reranking](https://github.com/HeavyCrown/RAG_Tips/blob/main/AdvancedRetrievalMethods/Cross_Encoder_Reranking.py)
+	1. 原理：
+		1. 将query和召回的chunk拼接成一个输入
+		2. 将输入放入模型，根据attention计算相关性得分
+		3. 根据得分降序排序返回top-k
+3. 优势:
+	1. 提高召回内容的相关性
+	2. 灵活性：可以根据需要调整重排序的方法
+	3. 提高上下文的质量
+	4. 减少噪音

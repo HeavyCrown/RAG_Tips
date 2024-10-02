@@ -65,7 +65,7 @@ class RAGQueryProcessor:
         step_back_query = generate_step_back_query(original_query, self.step_back_chain)
         sub_queries = decompose_query(original_query, self.subquery_decomposer_chain)
 
-        print("\nRewritten query:", rewrite_query)
+        print("\nRewritten query:", rewritten_query)
         print("\nStep back query:", step_back_query)
         print("\nSub queries:\n")
         for i, sub_query in enumerate(sub_queries):
