@@ -99,3 +99,16 @@
 	2. 灵活性：可以根据需要调整重排序的方法
 	3. 提高上下文的质量
 	4. 减少噪音
+
+### 层次索引
+[hierarchical_indices](https://github.com/HeavyCrown/RAG_Tips/blob/main/AdvancedRetrievalMethods/hierarchical_indices.py)
+1. 问题：传统的平面索引方法难以处理大型文档或者语料库，会丢失上下文或者返回不想管的信息
+2. 解决方法：利用两层编码（摘要+chunk）的方法
+3. 实现细节：
+	1. 将pdf加载并分成文档
+	2. 使用LLM对每个文档异步生成摘要并汇总
+	3. 原始文档被分成更小、更详细的chunk
+	4. 创建了两个独立的vector，二者通过“page”关键字链接
+4. 分层检索：
+	1. 首先检索摘要vector，得到答案所在的“page”
+	2. 检索详细的chunk vector，并根据page对结果进行过滤
